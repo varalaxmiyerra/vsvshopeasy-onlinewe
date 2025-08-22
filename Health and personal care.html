@@ -219,6 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <h2 class="category-title">Skincare</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754737061/download_19_vobons.jpg" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Moisturizer</h3>
@@ -228,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="original-price">₹699</span>
                     </div>
                     <div class="product-rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+       
                         <span>(120)</span>
                     </div>
                     <div class="product-actions">
@@ -238,6 +240,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736977/Anessa_Perfect_UV_Sunscreen_Skincare_Milk_SPF_50_PA_60ml_xt56hm.jpg" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Sunscreen</h3>
@@ -257,6 +261,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736942/Cetaphil_skin_cleanser_ugrefr.jpg" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Face Wash</h3>
@@ -320,6 +326,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <h2 class="category-title">Oral Care</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736798/Niacinamide_Whitening_Toothpaste_-_For_Healthier_Whiter_Teeth_jj2tbj.jpg" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Toothpaste</h3>
@@ -339,6 +347,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754736760/download_18_cozktu.jpg" alt="Product Image" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Toothbrush</h3>
@@ -588,5 +598,47 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     </script>
-</body>
+
+ <script>
+        // Filter products by search query from URL
+        document.addEventListener('DOMContentLoaded', function () {
+            function normalize(str) {
+                return str
+                    .toLowerCase()
+                    .normalize('NFKD')
+                    .replace(/[\u0000-\u000f]/g, '')
+                    .replace(/[^a-z0-9 ]/g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+            }
+            const params = new URLSearchParams(window.location.search);
+            const search = params.get('search');
+            if (search) {
+                const normalizedSearch = normalize(search);
+                document.querySelectorAll('.category-section, .category1').forEach(section => {
+                    const cards = section.querySelectorAll('.product-card');
+                    let anyVisible = false;
+                    cards.forEach(card => {
+                        const titleEl = card.querySelector('.product-title');
+                        if (titleEl) {
+                            const normalizedTitle = normalize(titleEl.textContent);
+                            if (!normalizedTitle.includes(normalizedSearch)) {
+                                card.style.display = 'none';
+                            } else {
+                                card.style.display = '';
+                                anyVisible = true;
+                            }
+                        }
+                    });
+                    // Hide section if no products are visible
+                    if (!anyVisible) {
+                        section.style.display = 'none';
+                    } else {
+                        section.style.display = '';
+                    }
+                });
+            }
+        });
+        </script>
+        </body>
 </html>

@@ -231,6 +231,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <h2 class="category-title">Fruits</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727757/Top_view_delicious_apples_arrangement_fdavs2.jpg" alt="Fresh Apples" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Apples</h3>
@@ -250,6 +252,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727867/Descubra_a_melhor_forma_de_guardar_bananas_e_ter_a_fruta_fresca_veja_receitas_yu4mzm.jpg" alt="Fresh Bananas" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Bananas</h3>
@@ -269,6 +273,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727974/download_awzrss.jpg" alt="Fresh Oranges" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Oranges</h3>
@@ -332,6 +338,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <h2 class="category-title">Vegetables</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754674340/Tomatoes_ekdceu.jpg" alt="Fresh Tomatoes" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Tomatoes</h3>
@@ -351,6 +359,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754674440/carrots_ipzuif.jpg" alt="Fresh Potatoes" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Carrots</h3>
@@ -389,6 +399,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 </div>
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754674536/Brinjal_pilzuj.jpg" alt="Fresh Capsicum" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Brinjal</h3>
@@ -433,6 +445,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <h2 class="category-title">Dairy Products</h2>
         <div class="products-grid">
             <div class="product-card">
+                                    <div class="product-badge">Hot</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727023/Bainne_%C3%9Ar_Fresh_Irish_Milk_vc1tun.jpg" alt="Fresh Milk" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Fresh Milk</h3>
@@ -471,6 +485,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">Sale</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727405/Califia_Farms_Dairy-Free_Yogurt_Drinks_Review_Info_Cultured_Probiotic_yuunzc.jpg" alt="Yogurt" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Yogurt</h3>
@@ -490,6 +506,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="product-card">
+                                    <div class="product-badge">New</div>
+
                 <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727473/Avoid_All_Butter_Brands_Except_These_8_oqjh6f.jpg" alt="Butter" class="product-image" />
                 <div class="product-info">
                     <h3 class="product-title">Butter</h3>
@@ -598,5 +616,46 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     </script>
-</body>
+        <script>
+        // Filter products by search query from URL
+        document.addEventListener('DOMContentLoaded', function () {
+            function normalize(str) {
+                return str
+                    .toLowerCase()
+                    .normalize('NFKD')
+                    .replace(/[\u0000-\u000f]/g, '')
+                    .replace(/[^a-z0-9 ]/g, '')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+            }
+            const params = new URLSearchParams(window.location.search);
+            const search = params.get('search');
+            if (search) {
+                const normalizedSearch = normalize(search);
+                document.querySelectorAll('.category-section, .category1').forEach(section => {
+                    const cards = section.querySelectorAll('.product-card');
+                    let anyVisible = false;
+                    cards.forEach(card => {
+                        const titleEl = card.querySelector('.product-title');
+                        if (titleEl) {
+                            const normalizedTitle = normalize(titleEl.textContent);
+                            if (!normalizedTitle.includes(normalizedSearch)) {
+                                card.style.display = 'none';
+                            } else {
+                                card.style.display = '';
+                                anyVisible = true;
+                            }
+                        }
+                    });
+                    // Hide section if no products are visible
+                    if (!anyVisible) {
+                        section.style.display = 'none';
+                    } else {
+                        section.style.display = '';
+                    }
+                });
+            }
+        });
+        </script>
+    </body>
 </html>
