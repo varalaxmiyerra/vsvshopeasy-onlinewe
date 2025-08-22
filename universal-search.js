@@ -71,7 +71,7 @@ const searchData = {
                 'fresh carrots':'groceries.html',
                 'fresh onions':'groceries.html',
                 'fresh brinjal':'groceries.html',
-                'fresucumber':'groceries.html',
+                'fresh cucumber':'groceries.html',
                 'fresh milk':'groceries.html',
                 'cheese':'groceries.html',
                 'yogurt':'groceries.html',
