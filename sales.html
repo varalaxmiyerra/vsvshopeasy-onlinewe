@@ -1,9 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VSV Easy Shop — Reports & Analytics</title>
+  <title>VSV Easy Shop — Sales Reports</title>
   <!-- Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -182,15 +182,15 @@
     
     <nav class="nav">
       <h4>Reports</h4>
-      <a href="dashboard.html" class="active"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
-      <a href="sales.html"><i class="fa-solid fa-cart-shopping"></i> Sales</a>
-      <a href="dashboard-customers.html"><i class="fa-solid fa-users"></i> Customers</a>
-      <a href="inventory-dashboard.html"><i class="fa-solid fa-box"></i> Inventory</a>
-      <a href="reports-settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+      <a href="reports.html"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
+      <a href="#" class="active"><i class="fa-solid fa-cart-shopping"></i> Sales</a>
+      <a href="#"><i class="fa-solid fa-users"></i> Customers</a>
+      <a href="#"><i class="fa-solid fa-box"></i> Inventory</a>
+      <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
       
       <h4>Tools</h4>
-      <a href="export-data.html"><i class="fa-solid fa-download"></i> Export Data</a>
-      <a href="alerts.html"><i class="fa-solid fa-bell"></i> Alerts <span class="badge">3</span></a>
+      <a href="#"><i class="fa-solid fa-download"></i> Export Data</a>
+      <a href="#"><i class="fa-solid fa-bell"></i> Alerts <span class="badge">3</span></a>
     </nav>
   </aside>
 
@@ -200,7 +200,7 @@
       <button id="navToggle" class="btn" style="display:none"><i class="fa-solid fa-bars"></i></button>
       <div class="search">
         <i class="fa-solid fa-search"></i>
-        <input type="text" placeholder="Search reports and data...">
+        <input type="text" placeholder="Search sales data...">
       </div>
       <div class="top-actions">
         <button id="themeToggle" class="btn"><i class="fa-solid fa-moon"></i></button>
@@ -212,7 +212,7 @@
     <div class="content">
       <!-- Report Controls -->
       <div class="report-header">
-        <h1>Reports & Analytics</h1>
+        <h1>Sales Reports</h1>
         <div class="report-filters">
           <select id="dateRange">
             <option>Last 7 days</option>
@@ -231,32 +231,32 @@
             <option>Detailed</option>
             <option>Export</option>
           </select>
-          <button class="btn primary" onclick="generateReport()">Generate Report</button>
-          <button class="btn secondary" onclick="exportReport('pdf')">Export PDF</button>
+          <button class="btn primary" onclick="generateSalesReport()">Generate Report</button>
+          <button class="btn secondary" onclick="exportSalesReport('pdf')">Export PDF</button>
         </div>
       </div>
 
-      <!-- Sales Overview -->
+      <!-- Sales Performance Overview -->
       <section class="report-section">
         <div class="report-header">
-          <h2>Sales Overview</h2>
+          <h2>Sales Performance Overview</h2>
           <div class="report-filters">
-            <span>Total Revenue: ₹4.2M</span>
+            <span>Total Sales: ₹4.2M</span>
             <span style="color: var(--success)">↑ 15.8% vs last period</span>
           </div>
         </div>
         
         <div class="chart-grid">
           <div class="card">
-            <h3>Sales Trend</h3>
+            <h3>Daily Sales Trend</h3>
             <div class="chart-container">
-              <canvas id="salesTrendChart"></canvas>
+              <canvas id="dailySalesChart"></canvas>
             </div>
           </div>
           <div class="card">
-            <h3>Revenue Breakdown</h3>
+            <h3>Sales by Category</h3>
             <div class="chart-container">
-              <canvas id="revenueBreakdownChart"></canvas>
+              <canvas id="salesByCategoryChart"></canvas>
             </div>
           </div>
         </div>
@@ -265,10 +265,10 @@
           <table>
             <thead>
               <tr>
-                <th>Category</th>
-                <th>Revenue</th>
-                <th>Orders</th>
-                <th>Avg. Order Value</th>
+                <th>Product Category</th>
+                <th>Total Sales</th>
+                <th>Units Sold</th>
+                <th>Avg. Price</th>
                 <th>Growth</th>
                 <th>Status</th>
               </tr>
@@ -319,92 +319,78 @@
         </div>
       </section>
 
-      <!-- Customer Analytics -->
+      <!-- Top Selling Products -->
       <section class="report-section">
         <div class="report-header">
-          <h2>Customer Analytics</h2>
+          <h2>Top Selling Products</h2>
           <div class="report-filters">
-            <span>Total Customers: 8,492</span>
-            <span style="color: var(--brand-2)">↑ 18.3% new customers</span>
+            <span>Total Products: 156</span>
+            <span style="color: var(--brand-2)">↑ 23 new products this month</span>
           </div>
         </div>
         
-        <div class="chart-grid">
-          <div class="card">
-            <h3>Customer Acquisition</h3>
-            <div class="chart-container">
-              <canvas id="customerAcquisitionChart"></canvas>
-            </div>
-          </div>
-          <div class="card">
-            <h3>Customer Lifetime Value</h3>
-            <div class="chart-container">
-              <canvas id="clvChart"></canvas>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Inventory Report -->
-      <section class="report-section">
-        <div class="report-header">
-          <h2>Inventory Report</h2>
-          <a href="inventory-dashboard.html" class="btn">Manage Inventory</button></a>
-        </div>
         <div class="table-container">
           <table>
             <thead>
               <tr>
-                <th>Product</th>
-                <th>Current Stock</th>
-                <th>Sold This Month</th>
-                <th>Reorder Level</th>
-                <th>Stock Value</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Units Sold</th>
+                <th>Revenue</th>
+                <th>Avg. Rating</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Wireless Earbuds Pro</td>
-                <td>156</td>
+                <td>Electronics</td>
                 <td>89</td>
-                <td>50</td>
-                <td>₹46,800</td>
-                <td><span class="status success">In Stock</span></td>
+                <td>₹26,700</td>
+                <td>4.8</td>
+                <td><span class="status success">Best Seller</span></td>
               </tr>
               <tr>
                 <td>Running Shoes Ultra</td>
-                <td>23</td>
+                <td>Sports</td>
                 <td>67</td>
-                <td>30</td>
-                <td>₹6,900</td>
-                <td><span class="status warning">Low Stock</span></td>
+                <td>₹20,100</td>
+                <td>4.6</td>
+                <td><span class="status success">Popular</span></td>
               </tr>
               <tr>
                 <td>Smart Watch Series 5</td>
-                <td>78</td>
+                <td>Electronics</td>
                 <td>45</td>
-                <td>25</td>
-                <td>₹31,200</td>
-                <td><span class="status success">In Stock</span></td>
+                <td>₹18,000</td>
+                <td>4.7</td>
+                <td><span class="status success">Trending</span></td>
+              </tr>
+              <tr>
+                <td>Designer Handbag Luxe</td>
+                <td>Fashion</td>
+                <td>38</td>
+                <td>₹15,200</td>
+                <td>4.5</td>
+                <td><span class="status success">New</span></td>
               </tr>
               <tr>
                 <td>Kids Backpack Dino</td>
-                <td>8</td>
+                <td>Kids</td>
                 <td>32</td>
-                <td>15</td>
-                <td>₹1,200</td>
-                <td><span class="status danger">Critical</span></td>
+                <td>₹9,600</td>
+                <td>4.9</td>
+                <td><span class="status warning">Low Stock</span></td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <!-- Performance Metrics -->
+      <!-- Sales Performance Metrics -->
       <section class="report-section">
         <div class="report-header">
-          <h2>Performance Metrics</h2>
+          <h2>Sales Performance Metrics</h2>
         </div>
         <div class="grid kpi">
           <article class="card">
@@ -430,10 +416,35 @@
         </div>
       </section>
 
-      <div class="footer">© 2025 VSV Easy Shop • Reports & Analytics</div>
+      <!-- Sales Forecast -->
+      <section class="report-section">
+        <div class="report-header">
+          <h2>Sales Forecast</h2>
+          <div class="report-filters">
+            <span>Next 30 Days: ₹1.8M projected</span>
+          </div>
+        </div>
+        
+        <div class="chart-grid">
+          <div class="card">
+            <h3>Monthly Sales Forecast</h3>
+            <div class="chart-container">
+              <canvas id="salesForecastChart"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Seasonal Trends</h3>
+            <div class="chart-container">
+              <canvas id="seasonalTrendsChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">© 2025 VSV Easy Shop • Sales Reports</div>
     </div>
   </main>
 
-  <script src="reports.js"></script>
+  <script src="sales.js"></script>
 </body>
 </html>
