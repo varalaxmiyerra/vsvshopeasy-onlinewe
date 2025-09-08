@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SportsGear - Premium Sports Equipment Online</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="slideshow.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
              <link rel="stylesheet" href="footer-styles.css">
  <script src="add-to-cart.js"></script>
@@ -37,12 +38,12 @@
         }
         
         .cta-button {
-            background: linear-gradient(45deg, #ff6b35, #ff8e53);
+            background: linear-gradient(45deg, #df0808, #860808);
             color: white;
             border: none;
-            padding: 1rem 2.5rem;
+            padding: 1rem 2rem;
             font-size: 1.2rem;
-            border-radius: 50px;
+            border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
             animation: fadeInUp 1s ease 0.4s both;
@@ -194,7 +195,7 @@
         }
         
         .buy-now-btn {
-            background: linear-gradient(45deg, #ff6b35, #ff8e53);
+            background: linear-gradient(45deg, #df1721, #ff8e53);
             color: white;
         }
         
@@ -314,20 +315,48 @@ document.addEventListener('DOMContentLoaded', function() {
     </header>
 
     <!-- Sports Hero Section -->
-    <section class="sports-hero">
-        
+    <section class="hero">
+        <div class="slideshow-background full-hero-background">
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978416/paix%C3%A3o_por_esportes_%EF%B8%8F_qfkiyv.jpg" alt="Banner 1">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978415/Doers___Freepik_xu3cob.jpg" alt="Banner 2">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978415/How_to_Dispose_of_Unused_Sporting_Equipment_p6xtlh.jpg" alt="Banner 3">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978415/Sports_Photos_in_the_Form_of_the_Word_Sport_Stock_Photo_-_Image_of_muscular_concept__53189228_hxyw3m.jpg" alt="Banner 4">
+            </div>
+            
+
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <!-- The dots/circles -->
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+
+        <div class="hero-content">
+            <section class="electronics-banner">
+
+  </section>
+            
     </section>
 
     <!-- Cricket Section -->
-     <section class="home-decor-banner">
-
-          <section class="sports-banner">
+    <section class="category-section" id="cricket">
+ <section class="sports-banner">
   <h1>Welcome to Sports Collection 2025</h1>
 </section>
-
-
-    <section class="category-section" id="cricket">
-
         <h2 class="category-title">Cricket</h2>
         <div class="products-grid">
             <div class="product-card">
@@ -573,6 +602,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </footer>
 
+    <script src="slideshow.js"></script>
     <script>
         // Cart functionality
         let cartCount = 0;

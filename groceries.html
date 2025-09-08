@@ -6,8 +6,10 @@
     <title>Groceries - ShopEasy</title>
        <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
                  <link rel="stylesheet" href="footer-styles.css">
+<link rel="stylesheet" href="slideshow.css">
 <script src="add-to-cart.js"></script>
 <style>
         .groceries-hero {
@@ -236,7 +238,45 @@ document.addEventListener('DOMContentLoaded', function() {
     </header>
 
     <!-- Groceries Hero Section -->
-    <section class="groceries-hero">
+    <section class="hero">
+        <div class="slideshow-background full-hero-background">
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756718723/e42c8f84-ba6f-40cb-9943-9326fcbe7c36_cz00uc.jpg" alt="Fresh Fruits">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978410/23cc8739-f4eb-4292-90c4-33bbe92ab326_algxui.jpg" alt="Fresh Vegetables">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978410/Basket_with_foods_on_green_background_supermarket_concept_ai_generation___Premium_AI-generated_image_gnfeff.jpg" alt="Dairy Products">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/dh4qek1ty/image/upload/v1754727757/Top_view_delicious_apples_arrangement_fdavs2.jpg" alt="Cheese & Dairy">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756718742/d9601aec-aa3a-461e-99e2-ea4aeabfade5_lakrte.jpg" alt="Cheese & Dairy">
+            </div>
+            
+
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <!-- The dots/circles -->
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+
+        <div class="hero-content">
+            <section class="groceries-banner">
+               
+            </section>
+           
+        </div>
     </section>
 
     <!-- Categories Section -->
@@ -633,6 +673,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     </script>
+        <script src="slideshow.js"></script>
         <script>
         // Filter products by search query from URL
         document.addEventListener('DOMContentLoaded', function () {

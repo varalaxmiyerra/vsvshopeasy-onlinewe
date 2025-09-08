@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,9 @@
     <title>Home Decor - Premium Collection</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-                 <link rel="stylesheet" href="footer-styles.css">
+    <link rel="stylesheet" href="footer-styles.css">
+    <link rel="stylesheet" href="slideshow.css">
+<script src="universal-search.js"></script>
 <script src="add-to-cart.js"></script>
 <style>
         .home-decor-hero {
@@ -127,7 +129,7 @@
             font-weight: bold;
             color: #2C3E50;
             margin-bottom: 8px;
-        }
+        }   
         
         .product-description {
             color: #7F8C8D;
@@ -284,36 +286,72 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="logo">
                     <h1><a href="homepage.html" style="text-decoration: none; color: inherit;">VSV Shop Easy</a></h1>
                 </div>
-                
+
                 <nav class="nav-menu">
-                    <a href="homepage.html" class="nav-link">Home</a>
-                    <a href="clothing.html" class="nav-link">clothing</a>
-                    <a href="Home and decor.html" class="nav-link active">Home Decor</a>
+                    <a href="homepage.html" class="nav-link active">Home</a>
+                    <a href="new-arrivals.html" class="nav-link">New Arrivals</a>
+                    <a href="products.html" class="nav-link">Products</a>
                     <a href="categories.html" class="nav-link">Categories</a>
+                    <a href="deals.html" class="nav-link">Deals</a>
                 </nav>
-                
-            <div class="nav-icons">
+
+                <div class="nav-icons">
                     <a href="customer-account-enhanced (1).html" class="icon-link" id="userIcon">
                         <i class="fas fa-user"></i>
                         <span class="user-status"></span>
                     </a>
                     <a href="cart-updated.html" class="icon-link">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span><a href="cart.html" class="icon-link">
+                        <span class="cart-count">0</span>
                     </a>
-                    <a href="cart-updated.html" class="icon-link"></a>
-                   <a href="vsv-login.html" class="icon-link" id="userIcon">
-            <button class="cta-button"> Logout</button></a>
-</a>
+                    <a href="vsv-login.html" class="icon-link" id="userIcon">
+                        <button class="cta-button">Logout</button>
+                    </a>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Home Decor Hero Section -->
-    <section class="home-decor-hero">
-    </section>
+   <section class="hero">
+        <div class="slideshow-background full-hero-background">
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978438/Here_is_a_modern_and_minimalistic_design_lc5bop.jpg" alt="Banner 1">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978438/Create_a_welcoming_house_entrance_design_with_shi4d4.jpg" alt="Banner 2">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978438/Our_exclusive_Marcella_gold_flush_is_perfect_for_hvopiy.jpg" alt="Banner 3">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756713489/Transform_Your_Living_Area_into_a_Happy_Haven_l0ldwl.jpg" alt="Banner 4">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756713488/home_decor_home_design_home_decor_ideas_home_zop7eu.jpg" alt="Banner 5">
+            </div>
 
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <!-- The dots/circles -->
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+
+        <div class="hero-content">
+            <section class="summer-sale">
+
+  </section>
+        </div>
+    </section>
+        
     <!-- Categories Section -->
      <section class="home-decor-banner">
   <h1>Welcome to Home Decor Collection 2025</h1>
@@ -791,6 +829,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </footer>
 
+    <script src="slideshow.js"></script>
     <script>
         // Cart functionality
         let cartCount = 0;
@@ -813,8 +852,3 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
-
-</body>
-</html>
-
->

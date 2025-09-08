@@ -1,4 +1,4 @@
-// Shopping Cart System - Add to Cart Functionality
+ // Shopping Cart System - Add to Cart Functionality
 // This file provides comprehensive cart functionality for all pages
 
 class ShoppingCart {
@@ -169,12 +169,37 @@ class ShoppingCart {
     }
 }
 
-// Initialize cart
-const cart = new ShoppingCart();
+window.cart = new ShoppingCart();
+
+// Dispatch custom event on cart update
+function dispatchCartUpdatedEvent() {
+    window.dispatchEvent(new Event('cartUpdated'));
+}
+
+// Override addToCart to dispatch event
+const originalAddToCart = window.cart.addToCart.bind(window.cart);
+window.cart.addToCart = function(product) {
+    originalAddToCart(product);
+    dispatchCartUpdatedEvent();
+};
+
+// Override removeFromCart to dispatch event
+const originalRemoveFromCart = window.cart.removeFromCart.bind(window.cart);
+window.cart.removeFromCart = function(productId) {
+    originalRemoveFromCart(productId);
+    dispatchCartUpdatedEvent();
+};
+
+// Override updateQuantity to dispatch event
+const originalUpdateQuantity = window.cart.updateQuantity.bind(window.cart);
+window.cart.updateQuantity = function(productId, newQuantity) {
+    originalUpdateQuantity(productId, newQuantity);
+    dispatchCartUpdatedEvent();
+};
 
 // Global functions for HTML onclick handlers
 function addToCart(productId, name, price, image, category) {
-    cart.addToCart({
+    window.cart.addToCart({
         id: productId,
         name: name,
         price: price,
@@ -184,20 +209,20 @@ function addToCart(productId, name, price, image, category) {
 }
 
 function removeFromCart(productId) {
-    cart.removeFromCart(productId);
+    window.cart.removeFromCart(productId);
 }
 
 function updateQuantity(productId, quantity) {
-    cart.updateQuantity(productId, parseInt(quantity));
+    window.cart.updateQuantity(productId, parseInt(quantity));
 }
 
 function clearCart() {
-    cart.clearCart();
+    window.cart.clearCart();
 }
 
 // Initialize cart when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    cart.initializeCartButtons();
+    window.cart.initializeCartButtons();
     
     // Add CSS animations
     const style = document.createElement('style');
