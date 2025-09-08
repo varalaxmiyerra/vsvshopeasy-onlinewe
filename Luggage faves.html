@@ -6,7 +6,9 @@
     <title>Luggage Faves - Premium Travel Collection</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="stylesheet" href="footer-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="footer-styles.css">
+    <link rel="stylesheet" href="slideshow.css">
  <script src="add-to-cart.js"></script>
 <style>
         .luggage-hero {
@@ -34,15 +36,15 @@
         }
         
         .category-section {
-            margin: 60px 0;
+            margin: 10px 0;
             padding: 0 20px;
         }
         .travel-banner {
   text-align: center;
-  margin: 60px 0;
+  margin: 10px 0;
 }
 .travel-banner h1 {
-      font-family: 'Playfair Display', serif; /* Elegant font */
+      font-family: 'Great Vibes', cursive;
   font-size: 3rem;
   font-weight: 700;
   background: linear-gradient(90deg, #070249, #f00c17); /* Purple to Blue gradient */
@@ -271,15 +273,49 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </header>
     <!-- Luggage Hero Section -->
-    <section class="luggage-hero">
+    <section class="hero">
+        <div class="slideshow-background full-hero-background">
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756725520/Premium_Vector___Travel_elements_vector_concept_d4r3tk.jpg" alt="Luggage Banner 1">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756725518/Ready_for_your_next_adventure__%EF%B8%8F_It_s_time_to_xoekim.jpg" alt="Luggage Banner 2">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978387/travel_the_world_but_don_t_forget_these_essentials_uxftyb.jpg" alt="Luggage Banner 3">
+            </div>
+            
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978387/A_complete_travel_packing_guide_including_tips_bvn6mh.jpg" alt="Luggage Banner 5">
+            </div>
+
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <!-- The dots/circles -->
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+
+        <div class="hero-content">
+            <section class="travel-banner">
+               
+            </section>
+           
+        </div>
     </section>
 
     <!-- Categories Section -->
-    
-    <!-- Carry-On Luggage -->
-     <section class="travel-banner">
+ <section class="travel-banner">
   <h1>Welcome to Travel in Style with Luggage Faves 2025</h1>
 </section>
+    <!-- Carry-On Luggage -->
 
     <section class="category-section" id="carry-on">
         <h2 class="category-title">Carry-On Luggage</h2>
@@ -764,6 +800,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     </script>
+    <script src="slideshow.js"></script>
 </body>
 </html>
 

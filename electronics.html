@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-                 <link rel="stylesheet" href="footer-styles.css">
+    <link rel="stylesheet" href="footer-styles.css">
+    <link rel="stylesheet" href="slideshow.css">
 <script src="add-to-cart.js"></script>
 <style>
         .electronics-hero {
@@ -234,8 +235,44 @@ document.addEventListener('DOMContentLoaded', function() {
     </header>
 
     <!-- Electronics Hero Section -->
-    <section class="electronics-hero">
-        
+    <section class="hero">
+        <div class="slideshow-background full-hero-background">
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756714865/Apple_prouduct_iphone_applesmartwatch_macbook_nnfyf7.jpg" alt="Electronics Banner 1">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756809879/ae24db49-dbcb-44d8-bddd-81ec3a96a8b8_xcjdnz.jpg" alt="Electronics Banner 2">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756733716/An_isometric_3D_depiction_of_a_robot_stepping_out_rgiabs.jpg" alt="Electronics Banner 3">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756714866/Technology_is_getting_cooler_every_year_and_2025_mfned3.jpg" alt="Electronics Banner 4">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978443/Lumin%C3%A1ria_RGB_com_Caixa_de_Som_G_Speaker_Estilo_zcql4x.jpg" alt="Electronics Banner 5">
+            </div>
+
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <!-- The dots/circles -->
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+
+        <div class="hero-content">
+            <section class="electronics-banner">
+              
+            </section>
+            
+        </div>
     </section>
 
     <!-- Categories Section -->
@@ -730,6 +767,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </footer>
 
+    <script src="slideshow.js"></script>
     <script>
         // Cart functionality
         let cartCount = 0;

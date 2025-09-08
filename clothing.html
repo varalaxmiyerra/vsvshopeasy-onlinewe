@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Clothing Collection - ShopEasy</title>
     <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="slideshow.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
                <link rel="stylesheet" href="footer-styles.css">
 
@@ -267,9 +267,43 @@ document.addEventListener('DOMContentLoaded', function() {
     </header>
 
     <!-- Hero Section -->
-    <section class="clothing-hero">
-        
-     
+    <section class="hero">
+        <div class="slideshow-background full-hero-background">
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756716951/7b931623-1083-44ae-971a-c5a3b90999c9_xjzkjc.jpg" alt="Banner 1">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756716948/7f012abe-69e6-4ebc-a5d4-a12726c40bd4_fehbhh.jpg" alt="Banner 2">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756716957/cb873de6-9930-4274-8c5d-bebb8979d2ef_-_Copy_zspsop.jpg" alt="Banner 3">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756716947/efa850c0-9204-4e0e-89fb-87d6aa5668fb_orfrln.jpg" alt="Banner 4">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756716952/Editable_sunlit_t-shirt_mockup___premium_image_by_o6mvuh.jpg" alt="Banner 5">
+            </div>
+
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <!-- The dots/circles -->
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+
+        <div class="hero-content">
+            <section class="summer-sale">
+
+  </section>
+        </div>
     </section>
 
     <!-- Category 1: Shirts -->
@@ -296,8 +330,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span>(234)</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart-btn" onclick="addToCart('shirt-1', 'Classic White Shirt', 1299)">Add to Cart</button>
-                        <button class="buy-now-btn" onclick="buyNow('shirt-1', 'Classic White Shirt', 1299)">Buy Now</button>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -317,8 +351,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span>(156)</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart-btn" onclick="addToCart('shirt-2', 'Blue Striped Shirt', 999)">Add to Cart</button>
-                        <button class="buy-now-btn" onclick="buyNow('shirt-2', 'Blue Striped Shirt', 999)">Buy Now</button>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -337,8 +371,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span>(89)</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart-btn" onclick="addToCart('shirt-3', 'Formal Black Shirt', 1599)">Add to Cart</button>
-                        <button class="buy-now-btn" onclick="buyNow('shirt-3', 'Formal Black Shirt', 1599)">Buy Now</button>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -358,8 +392,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span>(312)</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart-btn" onclick="addToCart('shirt-4', 'Checkered Casual Shirt', 1199)">Add to Cart</button>
-                        <button class="buy-now-btn" onclick="buyNow('shirt-4', 'Checkered Casual Shirt', 1199)">Buy Now</button>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                        <button class="buy-now-btn">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -718,18 +752,27 @@ document.addEventListener('DOMContentLoaded', function() {
         let cartCount = 0;
         const cartCountElement = document.querySelector('.cart-count');
 
-        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            button.addEventListener('click', function () {
-                cartCount++;
-                cartCountElement.textContent = cartCount;
+        // Buy Now functionality
+        function buyNow(productId, name, price) {
+            // Add to cart first
+            const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+            if (productCard) {
+                const image = productCard.querySelector('.product-image').src;
+                const category = productCard.dataset.category || 'general';
+                addToCart(productId, name, price, image, category);
+            }
+            // Redirect to cart
+            window.location.href = 'cart-updated.html';
+        }
 
-                this.textContent = 'Added!';
-                this.style.background = '#ff69b4';
-
-                setTimeout(() => {
-                    this.textContent = 'Add to Cart';
-                    this.style.background = 'linear-gradient(45deg, #ff69b4, #ff1493)';
-                }, 1000);
+        // Initialize buy now buttons
+        document.querySelectorAll('.buy-now-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const productId = productCard.dataset.productId;
+                const name = productCard.querySelector('.product-title').textContent;
+                const price = parseFloat(productCard.querySelector('.current-price').textContent.replace('₹', ''));
+                buyNow(productId, name, price);
             });
         });
 
@@ -771,12 +814,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Handle Enter key in search input
-        document.getElementById('clothingSearch').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                performClothingSearch();
-            }
-        });
+        const clothingSearchInput = document.getElementById('clothingSearch');
+        if (clothingSearchInput) {
+            clothingSearchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    performClothingSearch();
+                }
+            });
+        }
 
         // Handle search parameters on page load
         document.addEventListener('DOMContentLoaded', function() {
@@ -813,6 +859,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     </script>
+    <script src="slideshow.js"></script>
 </body>
 </html>
 

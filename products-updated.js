@@ -134,6 +134,116 @@ class ProductsManager {
                 rating: 4.6,
                 reviews: 167,
                 badge: "Sale"
+            },
+            {
+                id: 11,
+                name: "4K Ultra HD TV",
+                category: "electronics",
+                price: 45999,
+                originalPrice: 59999,
+                image: "https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756909547/HISENSE_65A7NQTUK_65_Smart_4K_Ultra_HD_HDR_QLED_TV_nh0ylp.jpg",
+                rating: 4.7,
+                reviews: 210,
+                badge: "Hot"
+            },
+            {
+                id: 12,
+                name: "Leather Wallet",
+                category: "fashion",
+                price: 1299,
+                originalPrice: 1999,
+                image: "https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756909544/e2557ec9-9666-4071-8b7a-768c935b773d_-_Copy_vbjxnp.jpg",
+                rating: 4.4,
+                reviews: 134,
+                badge: null
+            },
+            {
+                id: 13,
+                name: "Ceramic Vase",
+                category: "home",
+                price: 799,
+                originalPrice: 1299,
+                image: "https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756909543/e3d8386b-0f65-4c8e-8dec-5b3b2c1808b2_bfeywl.jpg",
+                rating: 4.3,
+                reviews: 56,
+                badge: "New"
+            },
+            {
+                id: 14,
+                name: "Organic Face Cream",
+                category: "beauty",
+                price: 1599,
+                originalPrice: 2199,
+                image: "https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756909543/without_name_facial_creams_-_Google_Search_mjunf9.jpg",
+                rating: 4.5,
+                reviews: 98,
+                badge: "Sale"
+            },
+            {
+                id: 15,
+                name: "Cookbook: Healthy Meals",
+                category: "books",
+                price: 499,
+                originalPrice: 799,
+                image: "https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756909536/20_Easy_and_Healthy_Recipes_for_One-person_Living_ihjdwt.jpg",
+                rating: 4.8,
+                reviews: 120,
+                badge: null
+            },
+            {
+                id: 16,
+                name: "Mountain Bike",
+                category: "sports",
+                price: 15999,
+                originalPrice: 19999,
+                image: "https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756909535/This_product_is_excluded_from_the_free_delivery_sgyip9.jpg",
+                rating: 4.6,
+                reviews: 75,
+                badge: "New"
+            },
+            {
+                id: 17,
+                name: "Bluetooth Earbuds",
+                category: "electronics",
+                price: 2499,
+                originalPrice: 3999,
+                image: "https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756909535/e36dad36-0c0a-4a59-a828-220aede21e16_na0han.jpg",
+                rating: 4.3,
+                reviews: 180,
+                badge: null
+            },
+            {
+                id: 18,
+                name: "Denim Jacket",
+                category: "fashion",
+                price: 2999,
+                originalPrice: 3999,
+                image: "https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756909535/Refresh_your_layers_with_the_Patch_Pocket_Chic_nbatwp.jpg",
+                rating: 4.5,
+                reviews: 210,
+                badge: "Sale"
+            },
+            {
+                id: 19,
+                name: "Table Lamp",
+                category: "home",
+                price: 1299,
+                originalPrice: 1799,
+                image: "https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756909534/Serene_Wavecrest_Lamp_xxrpr4.jpg",
+                rating: 4.4,
+                reviews: 89,
+                badge: null
+            },
+            {
+                id: 20,
+                name: "Herbal Shampoo",
+                category: "beauty",
+                price: 699,
+                originalPrice: 999,
+                image: "https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756909534/Experience_the_purity_of_nature_with_Havintha_s_kmfqlc.jpg",
+                rating: 4.2,
+                reviews: 140,
+                badge: "New"
             }
         ];
         this.filteredProducts = [...this.products];
@@ -144,6 +254,9 @@ class ProductsManager {
     setupEventListeners() {
         // Search functionality
         const searchInput = document.getElementById('productSearch');
+        const prevBtn = document.getElementById('prevPage');
+        const nextBtn = document.getElementById('nextPage');
+
         if (searchInput) {
             searchInput.addEventListener('input', (e) => {
                 this.searchProducts(e.target.value);
@@ -158,6 +271,27 @@ class ProductsManager {
         if (categoryFilter) categoryFilter.addEventListener('change', () => this.filterProducts());
         if (priceFilter) priceFilter.addEventListener('change', () => this.filterProducts());
         if (sortFilter) sortFilter.addEventListener('change', () => this.sortProducts());
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (this.currentPage > 1) {
+                    this.currentPage--;
+                    this.renderProducts();
+                    this.updatePagination();
+                }
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(this.filteredProducts.length / this.productsPerPage);
+                if (this.currentPage < totalPages) {
+                    this.currentPage++;
+                    this.renderProducts();
+                    this.updatePagination();
+                }
+            });
+        }
     }
 
     setupCart() {
@@ -213,6 +347,8 @@ class ProductsManager {
     productsToShow.forEach(product => {
       const productElement = document.createElement('div');
       productElement.className = this.currentView === 'grid' ? 'product-card' : 'product-card-list';
+      productElement.dataset.productId = product.id;
+      productElement.dataset.category = product.category;
       
       if (this.currentView === 'grid') {
         productElement.innerHTML = `

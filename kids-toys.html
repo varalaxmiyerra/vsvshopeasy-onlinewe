@@ -6,7 +6,8 @@
     <title>Kids Toys - Fun & Educational Collection</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-             <link rel="stylesheet" href="footer-styles.css">
+    <link rel="stylesheet" href="footer-styles.css">
+    <link rel="stylesheet" href="slideshow.css">
 <script src="add-to-cart.js"></script>
 
     <style>
@@ -285,7 +286,42 @@ document.addEventListener('DOMContentLoaded', function() {
     </header>
 
     <!-- Kids Toys Hero Section -->
-    <section class="kids-toys-hero">
+    <section class="hero">
+        <div class="slideshow-background full-hero-background">
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756718244/There_s_something_undeniably_special_about_a_gift_-_Copy_fl6ziz.jpg" alt="Educational Toys">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756718252/83f0f742-bce6-49df-8b14-07aac038ceb6_vligg7.jpg" alt="Action Figures">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978415/f6b98c42-77e9-44fc-9847-5a47dee1aa8c_fb6lkh.jpg" alt="Building Blocks">
+            </div>
+            <div class="mySlides fade">
+                <img src="https://res.cloudinary.com/ds3wuvkwo/image/upload/v1756978414/Toys_Spark_Imagination_Growth__Playful_Tools_for_v8yvbr.jpg" alt="Outdoor Toys">
+            </div>
+            
+
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <!-- The dots/circles -->
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+
+        <div class="hero-content">
+            <section class="kids-banner">
+              
+            </section>
+           
+        </div>
     </section>
 
     <!-- Educational Toys Section -->
@@ -723,7 +759,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="product-actions">
                         <button class="add-to-cart-btn">Add to Cart</button>
                         <button class="buy-now-btn">Buy Now</button>
-                    >
                     </div>
                 </section>
                 <!-- Footer -->
@@ -810,6 +845,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
     </script>
+    <script src="slideshow.js"></script>
 </body>
 </html>
 
